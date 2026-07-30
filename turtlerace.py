@@ -109,8 +109,8 @@ message.write(
     font=("Arial", 20, "bold")
 )
 
-#To prevent the IDE from closing the program instantly
-input("Press Enter to close")
+# Keep window open until user closes it 
+screen.mainloop()
     
     
     
