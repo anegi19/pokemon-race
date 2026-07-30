@@ -7,7 +7,19 @@ screen = Screen()
 screen.setup(width=800, height=600)
 screen.title("Turtle Race")
 
+#create turtle for winning message
+message = Turtle()
+message.hideturtle()
+message.penup()
+message.goto(0, -250)   # Position near the bottom of the screen
 
+bet = screen.textinput(
+    title="Place Your Bet",
+    prompt="Who will win?\n(Charmander, Bulbasaur, Squirtle, Raichu or Joltik)"
+)
+
+if bet:
+    bet = bet.strip().title()
 
 #create Turtle objects
 A = Turtle() 
@@ -31,7 +43,7 @@ for i in range(len(TurtleList)):
     turtle.color(TurtleColors[i])
     turtle.shape("turtle")
     turtle.penup()
-    turtle.goto(-300, TurtleStartPosY[i])
+    turtle.goto(-250, TurtleStartPosY[i])
     turtle.write(TurtleNames[i],
                  font=("Arial", 20, "bold"), align="right")
     turtle.pendown()
@@ -81,6 +93,21 @@ while race_on:
             break
     
 
+winner = TurtleNames[winner_index]
+
+if bet == winner:
+    result = "🎉 You guessed correctly!"
+else:
+    result = f"❌ Womp Womp :( You bet on {bet}. 💔 "
+
+message.clear()
+message.color(TurtleColors[winner_index])
+
+message.write(
+    f"🏆 Congratulations {winner}! 🏆\n\n{result}",
+    align="center",
+    font=("Arial", 20, "bold")
+)
 
 #To prevent the IDE from closing the program instantly
 input("Press Enter to close")
