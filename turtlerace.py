@@ -5,7 +5,12 @@ from time import sleep
 # Create screen
 screen = Screen()
 screen.setup(width=800, height=600)
-screen.title("Turtle Race")
+screen.title("Pokemon Race")
+screen.addshape("rsz_charmander.gif")
+screen.addshape("rsz_bulbasaur.gif")
+screen.addshape("rsz_squirtle.gif")
+screen.addshape("rsz_raichu.gif")
+screen.addshape("rsz_joltik.gif")
 
 #create turtle for winning message
 message = Turtle()
@@ -32,8 +37,9 @@ E = Turtle()
 TurtleList = [A,B,C,D,E] #list of Turtle objects
 TurtleNames = ["Charmander","Bulbasaur","Squirtle","Raichu", "Joltik"] #list of Turtle names
 TurtleColors = ['red','green','deepskyblue','orange', "gold"] #list of Turtle colors
+TurtleShapes = ['rsz_charmander.gif', 'rsz_bulbasaur.gif', 'rsz_squirtle.gif', 'rsz_raichu.gif', 'rsz_joltik.gif'] #list of Turtle shapes
 TurtleStartPosX = [-160,-160,-160,-160, -160] #All Turtles start from the same X position
-TurtleStartPosY = [100, 50, 0,-50, -100] # All Turtles are arranged at different Y positions at the start line
+TurtleStartPosY = [140, 70, 0, -70, -140] # All Turtles are arranged at different Y positions at the start line
 
 N = len(TurtleList) #number of Turtles in the race
 
@@ -41,7 +47,7 @@ N = len(TurtleList) #number of Turtles in the race
 for i in range(len(TurtleList)):
     turtle = TurtleList[i]
     turtle.color(TurtleColors[i])
-    turtle.shape("turtle")
+    turtle.shape(TurtleShapes[i])
     turtle.penup()
     turtle.goto(-250, TurtleStartPosY[i])
     turtle.write(TurtleNames[i],
@@ -87,8 +93,6 @@ while race_on:
         if turtle.xcor() >= 350:
             winner_index = TurtleList.index(turtle)
             print("The Winner is", TurtleNames[winner_index], "!")
-
-
             race_on = False
             break
     
