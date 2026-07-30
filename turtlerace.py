@@ -1,10 +1,12 @@
 from turtle import Turtle, Screen
 from random import randint, choice
 from time import sleep
+
 # Create screen
 screen = Screen()
 screen.setup(width=800, height=600)
 screen.title("Turtle Race")
+
 
 
 #create Turtle objects
@@ -19,7 +21,7 @@ TurtleList = [A,B,C,D,E] #list of Turtle objects
 TurtleNames = ["Charmander","Bulbasaur","Squirtle","Raichu", "Joltik"] #list of Turtle names
 TurtleColors = ['red','green','deepskyblue','orange', "gold"] #list of Turtle colors
 TurtleStartPosX = [-160,-160,-160,-160, -160] #All Turtles start from the same X position
-TurtleStartPosY = [100,50,0,-50, -100] # All Turtles are arranged at different Y positions at the start line
+TurtleStartPosY = [100, 50, 0,-50, -100] # All Turtles are arranged at different Y positions at the start line
 
 N = len(TurtleList) #number of Turtles in the race
 
@@ -42,6 +44,25 @@ finish_line.pendown()
 finish_line.right(90)
 finish_line.forward(500)
 finish_line.hideturtle()
+
+#create a turtle that counts down
+countdown = Turtle()
+countdown.hideturtle()
+countdown.penup()
+countdown.goto(0, 200)
+
+for number in ["3", "2", "1", "GO!"]:
+    countdown.clear()
+    countdown.write(
+        number,
+        align="center",
+        font=("Arial", 50, "bold")
+    )
+    sleep(1)
+
+countdown.clear()
+
+
 
 # Start race
 race_on = True
