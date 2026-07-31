@@ -6,11 +6,24 @@ from time import sleep
 screen = Screen()
 screen.setup(width=800, height=600)
 screen.title("Pokemon Race")
+
 screen.addshape("rsz_charmander.gif")
 screen.addshape("rsz_bulbasaur.gif")
 screen.addshape("rsz_squirtle.gif")
 screen.addshape("rsz_raichu.gif")
 screen.addshape("rsz_joltik.gif")
+
+screen.addshape("puddle_1.gif")
+screen.addshape("puddle_2.gif")
+screen.addshape("puddle_3.gif")
+screen.addshape("puddle_4.gif")
+
+screen.addshape("rsz_berries_1.gif")
+screen.addshape("rsz_berries_2.gif")
+screen.addshape("rsz_berries_3.gif")
+
+
+
 
 #create turtle for winning message
 message = Turtle()
@@ -38,7 +51,7 @@ TurtleList = [A,B,C,D,E] #list of Turtle objects
 TurtleNames = ["Charmander","Bulbasaur","Squirtle","Raichu", "Joltik"] #list of Turtle names
 TurtleColors = ['red','green','deepskyblue','orange', "gold"] #list of Turtle colors
 TurtleShapes = ['rsz_charmander.gif', 'rsz_bulbasaur.gif', 'rsz_squirtle.gif', 'rsz_raichu.gif', 'rsz_joltik.gif'] #list of Turtle shapes
-TurtleStartPosX = [-160,-160,-160,-160, -160] #All Turtles start from the same X position
+#TurtleStartPosX = [-160,-160,-160,-160, -160] #All Turtles start from the same X position
 TurtleStartPosY = [140, 70, 0, -70, -140] # All Turtles are arranged at different Y positions at the start line
 
 N = len(TurtleList) #number of Turtles in the race
@@ -86,9 +99,50 @@ countdown.clear()
 race_on = True
 
 while race_on:
-    for turtle in TurtleList:
+    for i, turtle in enumerate(TurtleList):
         turtle.forward(randint(1, 5))
         sleep(0.01)
+        flag = True
+        if randint(1,1000) < 5: #create hurdle
+            x_ = turtle.xcor()
+            y_ = turtle.ycor()
+            puddle = Turtle()
+            shape_num = randint(1,4)
+            puddle.shape(f"puddle_{shape_num}.gif")    
+            puddle.penup()
+            puddle.goto(x_, y_)
+            puddle.backward(30)
+
+            message.clear()
+            message.color(TurtleColors[i])
+            message.write(
+                f" Oh no! {TurtleNames[i]} got splashed... :(",
+                align="center",
+                font=("Arial", 20, "bold")
+                )
+            flag = False
+
+        if randint(0,1000) <= 1 and flag: #create boost
+            x_ = turtle.xcor()
+            y_ = turtle.ycor()
+            boost = Turtle()
+            shape_num = randint(1,3)
+            boost.shape(f"rsz_berries_{shape_num}.gif")    
+            boost.penup()
+            boost.goto(x_, y_)
+            turtle.forward(50)
+
+            message.clear()
+            message.color(TurtleColors[i])
+            message.write(
+                f"{TurtleNames[i]} found a berry!",
+                align="center",
+                font=("Arial", 20, "bold")
+                )
+
+
+        
+
 
         if turtle.xcor() >= 350:
             winner_index = TurtleList.index(turtle)
