@@ -1,5 +1,6 @@
 from turtle import Turtle, Screen
 from random import randint, choice
+import time
 from time import sleep
 
 # Create screen
@@ -13,21 +14,42 @@ screen.addshape("rsz_squirtle.gif")
 screen.addshape("rsz_raichu.gif")
 screen.addshape("rsz_joltik.gif")
 
-screen.addshape("puddle_1.gif")
-screen.addshape("puddle_2.gif")
-screen.addshape("puddle_3.gif")
-screen.addshape("puddle_4.gif")
 
-screen.addshape("rsz_berries_1.gif")
-screen.addshape("rsz_berries_2.gif")
-screen.addshape("rsz_berries_3.gif")
+for i in range(1, 5):
+    frame = f"puddle_{i}.gif"
+    screen.addshape(frame)
+    
+for i in range(1, 4):
+    frame = f"rsz_berries_{i}.gif"
+    screen.addshape(frame)
 
+# Create cheering Pikachu at finish line
+pikachu_frames = []
+for i in range(1, 24):
+    frame = f"pikachu_gif_split/frame_{i:02d}.gif"
+    screen.addshape(frame)
+    pikachu_frames.append(frame)
+
+pikachu_frame = 0
+
+def animate_pikachu():
+    global pikachu_frame
+
+    pikachu.shape(pikachu_frames[pikachu_frame])
+
+    pikachu_frame += 1
+
+    if pikachu_frame >= len(pikachu_frames):
+        pikachu_frame = 0
+
+    screen.ontimer(animate_pikachu, 10)
 
 #create turtle for winning message
 message = Turtle()
 message.hideturtle()
 message.penup()
 message.goto(0, -250)   # Position near the bottom of the screen
+
 
 # random messages for each puddle/boost
 puddle_messages = [
@@ -103,6 +125,7 @@ finish_line.right(90)
 finish_line.forward(500)
 finish_line.hideturtle()
 
+
 #create a turtle that counts down
 countdown = Turtle()
 countdown.hideturtle()
@@ -120,15 +143,28 @@ for number in ["3", "2", "1", "GO!"]:
 
 countdown.clear()
 
+# Create cheering Pikachu at finish line
+pikachu = Turtle()
+pikachu.penup()
+pikachu.goto(300, 250) # near finish line
+
+
+animate_pikachu()
+
+
+
+
 
 
 # Start race
 race_on = True
+screen.tracer(0)
 
 while race_on:
+
     for i, turtle in enumerate(TurtleList):
         turtle.forward(randint(1, 5))
-        sleep(0.01)
+        
         flag = True
         if randint(1,1000) < 5: #create hurdle
             x_ = turtle.xcor()
@@ -148,6 +184,7 @@ while race_on:
                 font=("Arial", 20, "bold")
                 )
             flag = False
+            sleep(0.04)
 
         if randint(0,1000) <= 1 and flag: #create boost
             x_ = turtle.xcor()
@@ -157,7 +194,7 @@ while race_on:
             boost.shape(f"rsz_berries_{shape_num}.gif")    
             boost.penup()
             boost.goto(x_, y_)
-            turtle.forward(50)
+            turtle.forward(40)
 
             message.clear()
             message.color(TurtleColors[i])
@@ -166,16 +203,16 @@ while race_on:
                 align="center",
                 font=("Arial", 20, "bold")
                 )
-
-
-        
-
+            sleep(0.04)
 
         if turtle.xcor() >= 350:
             winner_index = TurtleList.index(turtle)
             print("The Winner is", TurtleNames[winner_index], "!")
             race_on = False
             break
+    sleep(0.08)
+    screen.update()
+     
     
 
 winner = TurtleNames[winner_index]
