@@ -1,5 +1,5 @@
 # pokemon-race
-A simple pokemon racing simulation. Everything based on the [`turtle`] (https://docs.python.org/3/library/turtle.html) Python library.
+A simple pokemon racing simulation. Everything based on the [`turtle`](https://docs.python.org/3/library/turtle.html) Python library.
 
 # How to play
 - Download the repository and run `turtlerace.py`.
