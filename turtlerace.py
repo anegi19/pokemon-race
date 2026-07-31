@@ -44,6 +44,19 @@ def animate_pikachu():
 
     screen.ontimer(animate_pikachu, 10)
 
+def pikachu_says(text):
+    pikachu_chat.clear()
+
+    pikachu_chat.goto(150, 250)
+
+    pikachu_chat.write(
+        "💬 " + text,
+        align="center",
+        font=("Arial", 20, "bold")
+    )
+
+    #screen.ontimer(pikachu_chat.clear, 3000)
+
 #create turtle for winning message
 message = Turtle()
 message.hideturtle()
@@ -146,14 +159,15 @@ countdown.clear()
 # Create cheering Pikachu at finish line
 pikachu = Turtle()
 pikachu.penup()
-pikachu.goto(300, 250) # near finish line
+pikachu.goto(300, 220) # near finish line
 
+# Pikachu speech bubble
+pikachu_chat = Turtle()
+pikachu_chat.hideturtle()
+pikachu_chat.penup()
+pikachu_chat.goto(0, 300)
 
 animate_pikachu()
-
-
-
-
 
 
 # Start race
@@ -176,13 +190,9 @@ while race_on:
             puddle.goto(x_, y_)
             puddle.backward(30)
 
-            message.clear()
-            message.color(TurtleColors[i])
-            message.write(
-                choice(puddle_messages).format(TurtleNames[i]),
-                align="center",
-                font=("Arial", 20, "bold")
-                )
+            pikachu_says(
+                "🫠" + choice(puddle_messages).format(TurtleNames[i]),
+            )
             flag = False
             sleep(0.04)
 
@@ -195,14 +205,9 @@ while race_on:
             boost.penup()
             boost.goto(x_, y_)
             turtle.forward(40)
-
-            message.clear()
-            message.color(TurtleColors[i])
-            message.write(
-                choice(berry_messages).format(TurtleNames[i]),
-                align="center",
-                font=("Arial", 20, "bold")
-                )
+            pikachu_says(
+                "⚡" + choice(berry_messages).format(TurtleNames[i])
+            )
             sleep(0.04)
 
         if turtle.xcor() >= 350:
@@ -220,8 +225,9 @@ winner = TurtleNames[winner_index]
 if bet == winner:
     result = "---🎉 You guessed correctly!---"
 else:
-    result = f"---❌ Womp Womp 👎 You bet on {bet}.---"
+    result = f"--- Womp Womp 👎 You bet on {bet}.---"
 
+pikachu_chat.clear()
 message.clear()
 message.color(TurtleColors[winner_index])
 
