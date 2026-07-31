@@ -7,26 +7,26 @@ from time import sleep
 screen = Screen()
 screen.setup(width=800, height=600)
 screen.title("Pokemon Race")
-screen.bgpic("bkg.gif")
-screen.addshape("rsz_charmander.gif")
-screen.addshape("rsz_bulbasaur.gif")
-screen.addshape("rsz_squirtle.gif")
-screen.addshape("rsz_raichu.gif")
-screen.addshape("rsz_joltik.gif")
+screen.bgpic("images/bkg.gif")
+screen.addshape("images/rsz_charmander.gif")
+screen.addshape("images/rsz_bulbasaur.gif")
+screen.addshape("images/rsz_squirtle.gif")
+screen.addshape("images/rsz_raichu.gif")
+screen.addshape("images/rsz_joltik.gif")
 
 
 for i in range(1, 5):
-    frame = f"puddle_{i}.gif"
+    frame = f"images/puddle_{i}.gif"
     screen.addshape(frame)
     
 for i in range(1, 4):
-    frame = f"rsz_berries_{i}.gif"
+    frame = f"images/rsz_berries_{i}.gif"
     screen.addshape(frame)
 
 # Create cheering Pikachu at finish line
 pikachu_frames = []
 for i in range(1, 24):
-    frame = f"pikachu_gif_split/frame_{i:02d}.gif"
+    frame = f"images/pikachu_gif_split/frame_{i:02d}.gif"
     screen.addshape(frame)
     pikachu_frames.append(frame)
 
@@ -91,8 +91,6 @@ berry_messages = [
     "It's super effective! {} sped up!"
 ]
 
-
-
 bet = screen.textinput(
     title="Place Your Bet",
     prompt="Who will win?\n(Charmander, Bulbasaur, Squirtle, Raichu or Joltik)"
@@ -112,7 +110,7 @@ E = Turtle()
 TurtleList = [A,B,C,D,E] #list of Turtle objects
 TurtleNames = ["Charmander","Bulbasaur","Squirtle","Raichu", "Joltik"] #list of Turtle names
 TurtleColors = ['red','green','deepskyblue','orange', "gold"] #list of Turtle colors
-TurtleShapes = ['rsz_charmander.gif', 'rsz_bulbasaur.gif', 'rsz_squirtle.gif', 'rsz_raichu.gif', 'rsz_joltik.gif'] #list of Turtle shapes
+TurtleShapes = ['images/rsz_charmander.gif', 'images/rsz_bulbasaur.gif', 'images/rsz_squirtle.gif', 'images/rsz_raichu.gif', 'images/rsz_joltik.gif'] #list of Turtle shapes
 #TurtleStartPosX = [-160,-160,-160,-160, -160] #All Turtles start from the same X position
 TurtleStartPosY = [140, 70, 0, -70, -140] # All Turtles are arranged at different Y positions at the start line
 
@@ -185,7 +183,7 @@ while race_on:
             y_ = turtle.ycor()
             puddle = Turtle()
             shape_num = randint(1,4)
-            puddle.shape(f"puddle_{shape_num}.gif")    
+            puddle.shape(f"images/puddle_{shape_num}.gif")    
             puddle.penup()
             puddle.goto(x_, y_)
             puddle.backward(30)
@@ -201,7 +199,7 @@ while race_on:
             y_ = turtle.ycor()
             boost = Turtle()
             shape_num = randint(1,3)
-            boost.shape(f"rsz_berries_{shape_num}.gif")    
+            boost.shape(f"images/rsz_berries_{shape_num}.gif")    
             boost.penup()
             boost.goto(x_, y_)
             turtle.forward(40)
