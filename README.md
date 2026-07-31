@@ -1,5 +1,13 @@
 # pokemon-race
-Choose your champion :) !
+A simple pokemon racing simulation. Everything based on the [`turtle`](https://docs.python.org/3/library/turtle.html) Python library.
 
-# Pokemon icons
-https://chicoeevee.github.io/HOMENatDexIcons/
+# How to play
+- Download the repository and run `turtlerace.py`.
+- Choose your champion :D !
+
+# Gameplay
+![gameplay gif](images/gameplay.gif)
+
+
+# Acknowlegements
+- Pokemon icons from https://chicoeevee.github.io/HOMENatDexIcons/
