@@ -1,13 +1,12 @@
 from turtle import Turtle, Screen
 from random import randint, choice
 from time import sleep
-from random import choice
 
 # Create screen
 screen = Screen()
 screen.setup(width=800, height=600)
 screen.title("Pokemon Race")
-
+screen.bgpic("bkg.gif")
 screen.addshape("rsz_charmander.gif")
 screen.addshape("rsz_bulbasaur.gif")
 screen.addshape("rsz_squirtle.gif")
