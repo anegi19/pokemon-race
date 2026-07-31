@@ -1,6 +1,7 @@
 from turtle import Turtle, Screen
 from random import randint, choice
 from time import sleep
+from random import choice
 
 # Create screen
 screen = Screen()
@@ -23,13 +24,40 @@ screen.addshape("rsz_berries_2.gif")
 screen.addshape("rsz_berries_3.gif")
 
 
-
-
 #create turtle for winning message
 message = Turtle()
 message.hideturtle()
 message.penup()
 message.goto(0, -250)   # Position near the bottom of the screen
+
+# random messages for each puddle/boost
+puddle_messages = [
+    "{} slipped in the mud!",
+    "{} got splashed!",
+    "{} lost their footing!",
+    "{} stepped into a puddle!",
+    "{} is covered in mud!",
+    "{} was slowed by a puddle!",
+    "{} got stuck in the muck!",
+    "Splash! {} is soaked!",
+    "{} can't catch a break!",
+    "A wild puddle appeared! {} was hit!"
+]
+
+berry_messages = [
+    "{} found a tasty Berry!",
+    "{} got a speed boost!",
+    "{} is charging ahead!",
+    "{} feels energized!",
+    "{} found a hidden Berry!",
+    "{} ate an Oran Berry!",
+    "{} is full of energy!",
+    "Critical speed boost for {}!",
+    "{} is moving at lightning speed!",
+    "It's super effective! {} sped up!"
+]
+
+
 
 bet = screen.textinput(
     title="Place Your Bet",
@@ -116,7 +144,7 @@ while race_on:
             message.clear()
             message.color(TurtleColors[i])
             message.write(
-                f" Oh no! {TurtleNames[i]} got splashed... :(",
+                choice(puddle_messages).format(TurtleNames[i]),
                 align="center",
                 font=("Arial", 20, "bold")
                 )
@@ -135,7 +163,7 @@ while race_on:
             message.clear()
             message.color(TurtleColors[i])
             message.write(
-                f"{TurtleNames[i]} found a berry!",
+                choice(berry_messages).format(TurtleNames[i]),
                 align="center",
                 font=("Arial", 20, "bold")
                 )
@@ -154,9 +182,9 @@ while race_on:
 winner = TurtleNames[winner_index]
 
 if bet == winner:
-    result = "🎉 You guessed correctly!"
+    result = "---🎉 You guessed correctly!---"
 else:
-    result = f"❌ Womp Womp :( You bet on {bet}. 💔 "
+    result = f"---❌ Womp Womp 👎 You bet on {bet}.---"
 
 message.clear()
 message.color(TurtleColors[winner_index])
